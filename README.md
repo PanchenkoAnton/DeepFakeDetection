@@ -7,10 +7,18 @@ To install all required Python packages you may use requirements.txt file with t
 
 `pip install -r requirements.txt`
 
-## 2. Dataset processing
+## 2. Getting data
+You may download desired raw data from [Kaggle competition data page](https://www.kaggle.com/c/deepfake-detection-challenge/data).
+
+Be careful! The full training set is just over 470 GB. It is available as one giant file, as well as 50 smaller files, each ~10 GB in size. 
+
+You must accept the competition's rules to gain access to any of the links below. After that, according to the dataset authors, you may freely use it for creating deepfake detection solutions.
+
+
+## 3. Dataset processing
 To create convenient dataset (consists of aligned face images) from raw videos you can use `dataset_processing.py` script. That Python module extracts aligned face images from one .mp4 file. You should run it recursively with all .mp4 files as an input to process full dataset. For instance, you may use easy bash script for that.
 
-## 3. Xception
+## 4. Xception
 Model definition is placed here: 
 
 `models/xception.py`.
@@ -23,7 +31,7 @@ Python module with some training settings is here:
 
 `settings/xception.py`.
 
-## 4. WSDAN
+## 5. WSDAN
 Model definition is placed here: 
 
 `models/wsdan.py`.
