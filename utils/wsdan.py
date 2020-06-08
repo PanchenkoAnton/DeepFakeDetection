@@ -213,7 +213,7 @@ class DfdcDataset(Dataset):
         self.datapath = datapath
 
     def next_epoch(self):
-        with open('dfdc.json') as f:
+        with open('../dfdc.json') as f:
             dfdc = json.load(f)
         if self.phase == 'train':
             trainset = dfdc['train']+dfdc['valid']
