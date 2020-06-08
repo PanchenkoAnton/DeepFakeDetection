@@ -3,7 +3,36 @@
 Implementation of DeepFake-Detection-Challenge solution as a part of Master Thesis in Saint Petersburg State University.
 
 ## 1. Dependencies
-To install all required Python packages you may use requirements.txt file (being in the root repository directory):
+To install all required Python packages you may use requirements.txt file with the terminal opened in the root repository directory:
 
 `pip install -r requirements.txt`
+
+## 2. Dataset processing
+To create convenient dataset (consists of aligned face images) from raw videos you can use `dataset_processing.py` script. That Python module extracts aligned face images from one .mp4 file. You should run it recursively with all .mp4 files as an input to process full dataset. For instance, you may use easy bash script for that.
+
+## 3. Xception
+Model definition is placed here: 
+
+`models/xception.py`.
+
+Code for training may be found here:
+
+`training/xception.py`.
+
+Python module with some training settings is here:
+
+`settings/xception.py`.
+
+## 4. WSDAN
+Model definition is placed here: 
+
+`models/wsdan.py`.
+
+Code for training may be found here:
+
+`training/wsdan.py`.
+
+Python module with some training settings is here:
+
+`settings/wsdan.py`.
 
