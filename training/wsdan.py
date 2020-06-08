@@ -13,8 +13,9 @@ import torch.distributed as dist
 
 from torch.utils.data import DataLoader
 from models import WSDAN
-from dfdc_dataset import DfdcDataset
-from wsdan_utils import CenterLoss, AverageMeter, TopKAccuracyMetric, batch_augment
+from utils.wsdan import CenterLoss, AverageMeter, TopKAccuracyMetric, \
+    batch_augment, DfdcDataset
+
 
 import_spec = importlib.util.spec_from_file_location("settings", sys.argv[1])
 settings = importlib.util.module_from_spec(import_spec)
@@ -23,9 +24,9 @@ cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 assert torch.cuda.is_available()
 loss_container = AverageMeter(name='loss')
-raw_metric = TopKAccuracyMetric(topk=(1,))
-crop_metric = TopKAccuracyMetric(topk=(1,))
-drop_metric = TopKAccuracyMetric(topk=(1,))
+raw_metric = TopKAccuracyMetric(topk=(1, ))
+crop_metric = TopKAccuracyMetric(topk=(1, ))
+drop_metric = TopKAccuracyMetric(topk=(1, ))
 
 
 def main_worker(local_rank, ngpus_per_node, args):
