@@ -40,8 +40,7 @@ def crop(image, landmark, image_size=112):
         results = results.T
         error = np.sum(np.sqrt(np.sum((results - src[i]) ** 2, axis=1)))
 
-        if error < min_error:
-            min_error = error
+        if min_error > error:
             min_M = M
             min_index = i
 
