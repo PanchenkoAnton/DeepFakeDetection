@@ -183,7 +183,6 @@ class Xception(nn.Module):
         x = self.conv1(input)
         x = self.bn1(x)
         x = self.relu1(x)
-
         x = self.conv2(x)
         x = self.bn2(x)
         x = self.relu2(x)
@@ -244,3 +243,78 @@ def xception(num_classes=1000, pretrained='imagenet'):
     model.last_linear = model.fc
     del model.fc
     return model
+
+
+class XceptionWSDAN(nn.Module):
+    def __init__(self):
+        super(XceptionWSDAN, self).__init__()
+        self.conv1 = nn.Conv2d(3, 32, 3, 2, 0, bias=False)
+        self.bn1 = nn.BatchNorm2d(32)
+        self.relu1 = nn.ReLU(inplace=True)
+        self.conv2 = nn.Conv2d(32, 64, 3, bias=False)
+        self.bn2 = nn.BatchNorm2d(64)
+        self.relu2 = nn.ReLU(inplace=True)
+        self.block1 = Block(64, 128, 2, 2, start_with_relu=False,
+                            grow_first=True)
+        self.block2 = Block(128, 256, 2, 2, start_with_relu=True,
+                            grow_first=True)
+        self.block3 = Block(256, 728, 2, 2, start_with_relu=True,
+                            grow_first=True)
+
+        self.block4 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+        self.block5 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+        self.block6 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+        self.block7 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+
+        self.block8 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+        self.block9 = Block(728, 728, 3, 1, start_with_relu=True,
+                            grow_first=True)
+        self.block10 = Block(728, 728, 3, 1, start_with_relu=True,
+                             grow_first=True)
+        self.block11 = Block(728, 728, 3, 1, start_with_relu=True,
+                             grow_first=True)
+
+        self.block12 = Block(728, 1024, 2, 2, start_with_relu=True,
+                             grow_first=False)
+
+        self.conv3 = SeparableConv2d(1024, 1536, 3, 1, 1)
+        self.bn3 = nn.BatchNorm2d(1536)
+        self.relu3 = nn.ReLU(inplace=True)
+        self.conv4 = SeparableConv2d(1536, 2048, 3, 1, 1)
+        self.bn4 = nn.BatchNorm2d(2048)
+        self.relu4 = nn.ReLU(inplace=True)
+
+    def forward(self, input):
+        x = self.conv1(input)
+        x = self.bn1(x)
+        x = self.relu1(x)
+        x = self.conv2(x)
+        x = self.bn2(x)
+        x = self.relu2(x)
+
+        x = self.block1(x)
+        x = self.block2(x)
+        x = self.block3(x)
+        x = self.block4(x)
+        x = self.block5(x)
+        x = self.block6(x)
+        x = self.block7(x)
+        x = self.block8(x)
+        x = self.block9(x)
+        x = self.block10(x)
+        x = self.block11(x)
+        x = self.block12(x)
+
+        x = self.conv3(x)
+        x = self.bn3(x)
+        x = self.relu3(x)
+        x = self.conv4(x)
+        x = self.bn4(x)
+        x = self.relu4(x)
+
+        return x
