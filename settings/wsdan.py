@@ -9,8 +9,8 @@ num_attentions = 8
 beta = 5e-2
 
 tag = 'dfdc'
-pretrained = 'output/xception/best.pth'
-save_dir = './output/wsdan/'
+pretrained = '../output/xception/xception.pth'
+save_dir = '../output/wsdan/'
 model_name = 'model.ckpt'
 log_name = 'train.log'
 ckpt = False
