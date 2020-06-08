@@ -12,7 +12,7 @@ You may download desired raw data from [Kaggle competition data page](https://ww
 
 Be careful! The full training set is just over 470 GB. It is available as one giant file, as well as 50 smaller files, each ~10 GB in size. 
 
-You must accept the competition's rules to gain access to any of the links below. After that, according to the dataset authors, you may freely use it for creating deepfake detection solutions.
+You must accept the competition's rules to gain access to any of the links. After that, according to the dataset authors, you may freely use it for creating deepfake detection solutions.
 
 
 ## 3. Dataset processing
