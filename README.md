@@ -23,7 +23,7 @@ Model definition is placed here:
 
 `models/xception.py`.
 
-Code for training may be found here:
+Code for the training may be found here:
 
 `training/xception.py`.
 
@@ -36,11 +36,11 @@ Model definition is placed here:
 
 `models/wsdan.py`.
 
-Code for training may be found here:
+Code for the training may be found here:
 
 `training/wsdan.py`.
 
-Python module with some training settings is here:
+Python module with some training and model settings is here:
 
 `settings/wsdan.py`.
 
