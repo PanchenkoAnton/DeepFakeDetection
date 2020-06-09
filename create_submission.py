@@ -95,17 +95,17 @@ def _main():
     test_dir = "../input/deepfake-detection-challenge/test_videos"
     csv_path = "../input/deepfake-detection-challenge/sample_submission.csv"
     face_detector = FaceDetector()
-    face_detector.load_checkpoint("../input/dfdc-pretrained-2/RetinaFace-Resnet50-fixed.pth")
+    face_detector.load_checkpoint("../input/pretrained/RetinaFace-Resnet50-fixed.pth")
     loader = DFDCLoader(test_dir, face_detector, T.ToTensor())
 
     model1 = xception(num_classes=2, pretrained=False)
-    ckpt = torch.load("../input/dfdc-pretrained/xception.pth")
+    ckpt = torch.load("../input/pretrained/xception.pth")
     model1.load_state_dict(ckpt["state_dict"])
     model1 = model1.cuda()
     model1.eval()
 
     model2 = WSDAN(num_classes=2, M=8, net="xception", pretrained=False).cuda()
-    ckpt = torch.load("../input/dfdc-pretrained/ckpt_x.pth")
+    ckpt = torch.load("../input/pretrained/wsdan.pth")
     model2.load_state_dict(ckpt["state_dict"])
     model2.eval()
 

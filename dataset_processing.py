@@ -7,10 +7,10 @@ import torch
 
 from PIL import Image
 from skimage.transform import SimilarityTransform
-from data import cfg_re50
-from layers.functions.prior_box import PriorBox
-from utils.box_utils import decode, decode_landm
-from models.retinaface import RetinaFace
+from externals.PyTorchRetinaface.data import cfg_re50
+from externals.PyTorchRetinaface.layers.functions.prior_box import PriorBox
+from externals.PyTorchRetinaface.utils.box_utils import decode, decode_landm
+from externals.PyTorchRetinaface.models.retinaface import RetinaFace
 
 
 def crop(image, landmark, image_size=112):
